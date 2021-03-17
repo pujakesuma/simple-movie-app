@@ -1,5 +1,8 @@
 require('dotenv').config()
 export default {
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  ssr: false,
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -57,17 +60,9 @@ export default {
 
   proxy: {
     '/movieapi/': {
-      target:
-        process.env.baseUrl ||
-        process.env.URL_MOVIE ||
-        'http://www.omdbapi.com',
+      target: process.env.URL_MOVIE,
       pathRewrite: { '^/movieapi/': '' },
     },
-  },
-
-  env: {
-    baseUrl: process.env.URL_MOVIE,
-    apiSecret: process.env.URL_APIKEY,
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
