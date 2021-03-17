@@ -5,7 +5,11 @@
     </h1>
     <search />
     <div class="row mt-5">
-      <div v-for="(data, i) in searchResult" :key="i" class="col-3 mb-4">
+      <div
+        v-for="(data, i) in searchResult"
+        :key="i"
+        class="col-12 col-sm-3 mb-4"
+      >
         <div class="card">
           <b-img-lazy class="card-img-top" :src="data.Poster" />
           <!-- <div class="card-body">
