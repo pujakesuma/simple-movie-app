@@ -17,19 +17,17 @@ export const mutations = {
 export const actions = {
   async fetchMovieTest({ commit }, payload) {
     try {
-      console.log(payload)
       const req = await this.$axios.$get('/movieapi/', {
         params: { apikey: this.$config.apiKey, ...payload },
       })
-      console.log(req)
       const { Response, Search, Error } = req
       if (Response === 'True') {
         commit('SET_SEARCH', Search)
       } else {
-        console.log(Error)
+        return Error
       }
     } catch (error) {
-      console.log(error)
+      return error.message
     }
   },
 }
