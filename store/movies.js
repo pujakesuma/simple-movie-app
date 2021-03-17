@@ -1,6 +1,6 @@
-export const state = {
+export const state = () => ({
   result: null,
-}
+})
 
 export const getters = {
   GET_SEARCH(state) {
