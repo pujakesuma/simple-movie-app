@@ -21,7 +21,7 @@ export const actions = {
         this.$config.apiKey || process.env.URL_APIKEY || process.env.apiSecret
       const req = await this.$axios.$get('/movieapi/', {
         params: {
-          apikey: key,
+          apikey: key || 'faf7e5bb',
           ...payload,
         },
       })
