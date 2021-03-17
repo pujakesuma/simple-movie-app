@@ -18,7 +18,13 @@ export const actions = {
   async fetchMovieTest({ commit }, payload) {
     try {
       const req = await this.$axios.$get('/movieapi/', {
-        params: { apikey: this.$config.apiKey, ...payload },
+        params: {
+          apikey:
+            this.$config.apiKey ||
+            process.env.URL_APIKEY ||
+            process.env.apiSecret,
+          ...payload,
+        },
       })
       const { Response, Search, Error } = req
       if (Response === 'True') {

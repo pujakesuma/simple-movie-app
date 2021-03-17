@@ -60,9 +60,17 @@ export default {
 
   proxy: {
     '/movieapi/': {
-      target: process.env.URL_MOVIE,
+      target:
+        process.env.baseUrl ||
+        process.env.URL_MOVIE ||
+        'http://www.omdbapi.com',
       pathRewrite: { '^/movieapi/': '' },
     },
+  },
+
+  env: {
+    baseUrl: process.env.URL_MOVIE,
+    apiSecret: process.env.URL_APIKEY,
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
