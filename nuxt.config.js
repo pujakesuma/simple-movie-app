@@ -88,10 +88,6 @@ export default {
     bootstrapVueCSS: false, // Or `bvCSS: false`
     icons: true,
   },
-  server: {
-    port: process.env.PORT || 3100,
-    host: '0.0.0.0',
-  },
 
   publicRuntimeConfig: {
     apiKey: process.env.URL_APIKEY,

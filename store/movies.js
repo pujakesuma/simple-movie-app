@@ -17,12 +17,11 @@ export const mutations = {
 export const actions = {
   async fetchMovieTest({ commit }, payload) {
     try {
+      const key =
+        this.$config.apiKey || process.env.URL_APIKEY || process.env.apiSecret
       const req = await this.$axios.$get('/movieapi/', {
         params: {
-          apikey:
-            this.$config.apiKey ||
-            process.env.URL_APIKEY ||
-            process.env.apiSecret,
+          apikey: key,
           ...payload,
         },
       })
