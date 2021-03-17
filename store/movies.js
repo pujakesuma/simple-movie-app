@@ -18,7 +18,7 @@ export const actions = {
   async fetchMovieTest({ commit }, payload) {
     try {
       const key = this.$config.apiKey || process.env.URL_APIKEY
-      const req = await this.$axios.$get('/movieapi/', {
+      const req = await this.$axios.$get(this.$config.baseUrl, {
         params: {
           apikey: key,
           ...payload,

@@ -1,7 +1,7 @@
 <template>
   <div class="container pt-5" style="min-height: 100vh; width: 100%">
     <h1 class="text-primary">
-      <span class="font-weight-bold text-light"> Mola TV </span>versi KW
+      <span class="font-weight-bold text-light"> Mola TV </span>kw
     </h1>
     <search />
     <div class="row mt-5">

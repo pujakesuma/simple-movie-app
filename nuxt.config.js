@@ -54,16 +54,16 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    proxy: true,
-  },
+  // axios: {
+  //   proxy: true,
+  // },
 
-  proxy: {
-    '/movieapi/': {
-      target: process.env.URL_MOVIE,
-      pathRewrite: { '^/movieapi/': '' },
-    },
-  },
+  // proxy: {
+  //   '/movieapi/': {
+  //     target: process.env.URL_MOVIE,
+  //     pathRewrite: { '^/movieapi/': '' },
+  //   },
+  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -83,10 +83,12 @@ export default {
 
   publicRuntimeConfig: {
     apiKey: process.env.URL_APIKEY,
+    baseUrl: process.env.URL_MOVIE,
   },
 
   privateRuntimeConfig: {
     apiKey: process.env.URL_APIKEY,
+    baseUrl: process.env.URL_MOVIE,
   },
 
   generate: {
