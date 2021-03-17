@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+$primary: #1F93FF;
+$light: #ffffff;
+$success: #138266;
+$dark: #1E252B;
+
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';

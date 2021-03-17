@@ -14,11 +14,22 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Poppins&display=swap',
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -34,6 +45,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://go.nuxtjs.dev/bootstrap
+    'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
@@ -61,6 +74,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  bootstrapVue: {
+    bootstrapCSS: false, // Or `css: false`
+    bootstrapVueCSS: false, // Or `bvCSS: false`
+    icons: true,
+  },
   server: {
     port: process.env.PORT || 3100,
     host: '0.0.0.0',
