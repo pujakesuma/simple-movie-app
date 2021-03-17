@@ -60,7 +60,7 @@ export default {
 
   proxy: {
     '/movieapi/': {
-      target: process.env.NUXT_ENV_URL_MOVIE,
+      target: process.env.URL_MOVIE,
       pathRewrite: { '^/movieapi/': '' },
     },
   },
@@ -86,6 +86,14 @@ export default {
   },
 
   publicRuntimeConfig: {
-    apiKey: process.env.NUXT_ENV_URL_APIKEY,
+    apiKey: process.env.URL_APIKEY,
+  },
+
+  privateRuntimeConfig: {
+    apiKey: process.env.URL_APIKEY,
+  },
+
+  generate: {
+    fallback: true,
   },
 }
