@@ -84,11 +84,13 @@ export default {
   publicRuntimeConfig: {
     apiKey: process.env.URL_APIKEY,
     baseUrl: process.env.URL_MOVIE,
+    urlPoster: process.env.URL_POSTER,
   },
 
   privateRuntimeConfig: {
     apiKey: process.env.URL_APIKEY,
     baseUrl: process.env.URL_MOVIE,
+    urlPoster: process.env.URL_POSTER,
   },
 
   generate: {
