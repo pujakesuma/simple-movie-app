@@ -1,8 +1,8 @@
 <template>
   <div class="container pt-5" style="min-height: 100vh; width: 100%">
-    <h1 class="text-primary">
-      <span class="font-weight-bold text-light"> Mola TV </span>kw 1
-    </h1>
+    <div class="text-primary" style="font-size: 2.5rem">
+      <span class="font-weight-bold text-light"> movie</span>wan
+    </div>
     <search />
     <result />
   </div>

@@ -14,10 +14,15 @@
 
 <script>
 export default {
-  data() {
-    return {
-      keyword: '',
-    }
+  computed: {
+    keyword: {
+      get() {
+        return this.$store.state.search.search
+      },
+      set(value) {
+        this.$store.commit('search/SET_SEARCH_VALUE', { value, page: 1 })
+      },
+    },
   },
   methods: {
     searchMovie() {
@@ -60,5 +65,11 @@ export default {
   color: #fff;
   padding: 1rem 5rem 1rem 1rem;
   width: 100%;
+}
+
+@media screen and (max-width: 720px) {
+  .search-bar {
+    width: 95%;
+  }
 }
 </style>

@@ -96,4 +96,14 @@ export default {
   generate: {
     fallback: true,
   },
+
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'show',
+        path: '/show/:id',
+        component: resolve(__dirname, 'pages/show/_id/index.vue'),
+      })
+    },
+  },
 }

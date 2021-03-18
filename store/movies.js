@@ -1,5 +1,13 @@
 export const state = () => ({
-  detail: null,
+  detail: {
+    Title: null,
+    Poster: null,
+    imdbID: null,
+    Year: null,
+    Country: null,
+    Genre: null,
+    Plot: null,
+  },
   poster: null,
 })
 
@@ -14,7 +22,7 @@ export const getters = {
 
 export const mutations = {
   SET_DETAIL(state, context) {
-    state.detail = context
+    state.detail = { ...state.detail, ...context }
   },
   SET_POSTER(state, context) {
     state.poster = context
@@ -24,6 +32,7 @@ export const mutations = {
 export const actions = {
   async getDetail({ commit }, payload) {
     try {
+      console.log(payload)
       const response = await this.$axios.$get(this.$config.baseUrl, {
         params: {
           apikey: this.$config.apiKey,

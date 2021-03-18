@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5">
+  <div class="mt-5 result">
     <div v-if="loading" class="text-center">
       <b-spinner
         v-for="i in 3"
@@ -16,7 +16,7 @@
           <div
             v-for="(data, i) in searchResult"
             :key="i"
-            class="col-12 col-sm-3 mb-4"
+            class="col-6 col-sm-3 mb-4"
           >
             <div
               v-b-modal.poster
@@ -26,10 +26,7 @@
               <b-img-lazy class="card-img-top" :src="data.Poster" />
             </div>
           </div>
-          <b-modal id="poster" hide-footer hide-header>
-            <!-- <pre>{{ detail }}</pre> -->
-            <b-img-lazy :src="detail.Poster" alt="poster" />
-          </b-modal>
+          <modal />
         </div>
       </template>
       <template v-else>
@@ -43,15 +40,27 @@
         </error>
       </template>
     </div>
+    <div v-if="loadingMore" class="text-center mt-4">
+      <b-spinner
+        v-for="i in 3"
+        :key="i"
+        variant="primary"
+        type="grow"
+        label="Spinning"
+        class="mr-2 my-4"
+      ></b-spinner>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import Error from '@/components/error/Error'
+import Modal from '@/components/modal/Modal'
 export default {
   components: {
     Error,
+    Modal,
   },
   props: {
     result: {
@@ -62,11 +71,17 @@ export default {
   computed: {
     ...mapGetters({
       searchResult: 'search/GET_SEARCH',
+      searchValue: 'search/GET_SEARCH_VALUE',
       errorMessage: 'search/GET_ERROR',
       loading: 'search/GET_LOADING',
+      loadingMore: 'search/GET_LOADING_MORE',
+      stop: 'search/GET_STOP',
       detail: 'movies/GET_DETAIL',
       poster: 'movies/GET_POSTER',
     }),
+  },
+  mounted() {
+    this.scroll()
   },
   methods: {
     async fetchDetail(id) {
@@ -75,12 +90,29 @@ export default {
     async showPoster(id) {
       await this.$store.dispatch('movies/getPoster', { i: id })
     },
+    searchMovie(type) {
+      this.$store.dispatch('search/searchMovie', {
+        s: this.searchValue,
+        type,
+      })
+    },
+    scroll() {
+      window.onscroll = () => {
+        const bottomOfWindow =
+          document.documentElement.scrollTop + window.innerHeight ===
+          document.documentElement.offsetHeight
+
+        if (!this.stop && bottomOfWindow) {
+          this.searchMovie('load_more')
+        }
+      }
+    },
   },
 }
 </script>
 
 <style lang="scss">
-.card {
+.result .card {
   height: 375px;
   border: none;
   cursor: pointer;
@@ -89,5 +121,11 @@ export default {
 .card-img-top {
   height: 100%;
   object-position: center;
+}
+
+@media screen and (max-width: 720px) {
+  .result .card {
+    height: 250px;
+  }
 }
 </style>
