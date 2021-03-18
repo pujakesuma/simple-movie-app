@@ -1,35 +1,49 @@
 export const state = () => ({
-  result: null,
+  detail: null,
+  poster: null,
 })
 
 export const getters = {
-  GET_SEARCH(state) {
-    return state.result
+  GET_DETAIL(state) {
+    return state.detail
+  },
+  GET_POSTER(state) {
+    return state.poster
   },
 }
 
 export const mutations = {
-  SET_SEARCH(state, context) {
-    state.result = context
+  SET_DETAIL(state, context) {
+    state.detail = context
+  },
+  SET_POSTER(state, context) {
+    state.poster = context
   },
 }
 
 export const actions = {
-  async fetchMovieTest({ commit }, payload) {
+  async getDetail({ commit }, payload) {
     try {
-      const key = this.$config.apiKey || process.env.URL_APIKEY
-      const req = await this.$axios.$get(this.$config.baseUrl, {
+      const response = await this.$axios.$get(this.$config.baseUrl, {
         params: {
-          apikey: key,
+          apikey: this.$config.apiKey,
           ...payload,
         },
       })
-      const { Response, Search, Error } = req
-      if (Response === 'True') {
-        commit('SET_SEARCH', Search)
-      } else {
-        return Error
-      }
+      commit('SET_DETAIL', response)
+    } catch (error) {
+      return error.message
+    }
+  },
+  async getPoster({ commit }, payload) {
+    try {
+      const response = await this.$axios.$get(this.$config.urlPoster, {
+        params: {
+          apikey: this.$config.apiKey,
+          ...payload,
+        },
+      })
+      commit('SET_POSTER', response)
     } catch (error) {
       return error.message
     }

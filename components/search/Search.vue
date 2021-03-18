@@ -1,19 +1,30 @@
 <template>
   <div class="mt-5">
-    <form class="search-bar mb-3" @submit.prevent>
+    <form class="search-bar mb-3" @submit.prevent="searchMovie">
       <input
+        v-model="keyword"
         class="form-input"
         type="text"
-        placeholder="Mau Cari apa Hayo ?"
-        aria-label="Search"
+        placeholder="Do you have something in mind ?"
       />
-      <i class="fas fa-search text-secondary" aria-hidden="true"></i>
+      <i class="fas fa-search text-secondary" @click.prevent="searchMovie"></i>
     </form>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      keyword: '',
+    }
+  },
+  methods: {
+    searchMovie() {
+      this.$store.dispatch('search/searchMovie', { s: this.keyword })
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -27,17 +38,16 @@ export default {}
   top: 38%;
   right: 1rem;
   display: block;
+  cursor: pointer;
 }
 
 .search-bar input.form-input[type='text']:focus:not([readonly]) {
-  // border-bottom: 1px solid#f4a261;
   box-shadow: none;
   background-color: #454849;
   color: #fff;
   outline: none;
 }
 .search-bar input.form-input[type='text'] {
-  // border-bottom: 1px solid#f4a261;
   box-shadow: none;
   background-color: #454849;
   outline: none;
