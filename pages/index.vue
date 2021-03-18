@@ -1,42 +1,33 @@
 <template>
   <div class="container pt-5" style="min-height: 100vh; width: 100%">
-    <h1 class="text-primary">
-      <span class="font-weight-bold text-light"> Mola TV </span>kw 1
-    </h1>
-    <search />
-    <div class="row mt-5">
-      <div
-        v-for="(data, i) in searchResult"
-        :key="i"
-        class="col-12 col-sm-3 mb-4"
-      >
-        <div class="card">
-          <b-img-lazy class="card-img-top" :src="data.Poster" />
-          <!-- <div class="card-body">
-            <p class="">
-              {{ data.Title }}
-            </p>
-          </div> -->
-        </div>
-      </div>
+    <div class="text-primary" style="font-size: 2.5rem">
+      <span class="font-weight-bold text-light"> movie</span>wan
     </div>
+    <search />
+    <result />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import Search from '@/components/search/Search'
+import Result from '@/components/result/Result'
 export default {
   components: {
     Search,
+    Result,
   },
-  computed: {
-    ...mapGetters({
-      searchResult: 'movies/GET_SEARCH',
-    }),
-  },
-  mounted() {
-    this.$store.dispatch('movies/fetchMovieTest', { s: 'godfather' })
+  async asyncData({ store, error }) {
+    try {
+      const req = await store.dispatch('search/searchMovie', {
+        s: 'godfather',
+      })
+      return req
+    } catch (err) {
+      return error({
+        message: err.message,
+        statusCode: err.response.status,
+      })
+    }
   },
 }
 </script>

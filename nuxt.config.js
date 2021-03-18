@@ -84,14 +84,26 @@ export default {
   publicRuntimeConfig: {
     apiKey: process.env.URL_APIKEY,
     baseUrl: process.env.URL_MOVIE,
+    urlPoster: process.env.URL_POSTER,
   },
 
   privateRuntimeConfig: {
     apiKey: process.env.URL_APIKEY,
     baseUrl: process.env.URL_MOVIE,
+    urlPoster: process.env.URL_POSTER,
   },
 
   generate: {
     fallback: true,
+  },
+
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'show',
+        path: '/show/:id',
+        component: resolve(__dirname, 'pages/show/_id/index.vue'),
+      })
+    },
   },
 }
