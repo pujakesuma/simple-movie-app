@@ -54,16 +54,16 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    proxy: true,
-  },
+  // axios: {
+  //   proxy: true,
+  // },
 
-  proxy: {
-    '/movieapi/': {
-      target: process.env.URL_MOVIE,
-      pathRewrite: { '^/movieapi/': '' },
-    },
-  },
+  // proxy: {
+  //   '/movieapi/': {
+  //     target: process.env.URL_MOVIE,
+  //     pathRewrite: { '^/movieapi/': '' },
+  //   },
+  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -80,12 +80,18 @@ export default {
     bootstrapVueCSS: false, // Or `bvCSS: false`
     icons: true,
   },
-  server: {
-    port: process.env.PORT || 3100,
-    host: '0.0.0.0',
-  },
 
   publicRuntimeConfig: {
     apiKey: process.env.URL_APIKEY,
+    baseUrl: process.env.URL_MOVIE,
+  },
+
+  privateRuntimeConfig: {
+    apiKey: process.env.URL_APIKEY,
+    baseUrl: process.env.URL_MOVIE,
+  },
+
+  generate: {
+    fallback: true,
   },
 }

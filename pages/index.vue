@@ -1,11 +1,15 @@
 <template>
   <div class="container pt-5" style="min-height: 100vh; width: 100%">
     <h1 class="text-primary">
-      <span class="font-weight-bold text-light"> Mola TV </span>versi KW
+      <span class="font-weight-bold text-light"> Mola TV </span>kw 1
     </h1>
     <search />
     <div class="row mt-5">
-      <div v-for="(data, i) in searchResult" :key="i" class="col-3 mb-4">
+      <div
+        v-for="(data, i) in searchResult"
+        :key="i"
+        class="col-12 col-sm-3 mb-4"
+      >
         <div class="card">
           <b-img-lazy class="card-img-top" :src="data.Poster" />
           <!-- <div class="card-body">

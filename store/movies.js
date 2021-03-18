@@ -1,6 +1,6 @@
-export const state = {
+export const state = () => ({
   result: null,
-}
+})
 
 export const getters = {
   GET_SEARCH(state) {
@@ -17,19 +17,21 @@ export const mutations = {
 export const actions = {
   async fetchMovieTest({ commit }, payload) {
     try {
-      console.log(payload)
-      const req = await this.$axios.$get('/movieapi/', {
-        params: { apikey: this.$config.apiKey, ...payload },
+      const key = this.$config.apiKey || process.env.URL_APIKEY
+      const req = await this.$axios.$get(this.$config.baseUrl, {
+        params: {
+          apikey: key,
+          ...payload,
+        },
       })
-      console.log(req)
       const { Response, Search, Error } = req
       if (Response === 'True') {
         commit('SET_SEARCH', Search)
       } else {
-        console.log(Error)
+        return Error
       }
     } catch (error) {
-      console.log(error)
+      return error.message
     }
   },
 }
