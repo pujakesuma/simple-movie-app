@@ -5,7 +5,7 @@
         v-model="keyword"
         class="form-input"
         type="text"
-        placeholder="Do you have something in mind ?"
+        placeholder="Looking for something ?"
       />
       <i class="fas fa-search text-secondary" @click.prevent="searchMovie"></i>
     </form>

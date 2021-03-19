@@ -81,7 +81,9 @@ export default {
     }),
   },
   mounted() {
-    this.scroll()
+    window.onscroll = () => this.scroll()
+    document.body.ontouchmove = () => this.scroll()
+    // this.mobileScroll()
   },
   methods: {
     async fetchDetail(id) {
@@ -96,15 +98,14 @@ export default {
         type,
       })
     },
-    scroll() {
-      window.onscroll = () => {
-        const bottomOfWindow =
-          document.documentElement.scrollTop + window.innerHeight ===
-          document.documentElement.offsetHeight
 
-        if (!this.stop && bottomOfWindow) {
-          this.searchMovie('load_more')
-        }
+    scroll() {
+      const bottomOfWindow =
+        document.documentElement.scrollTop + window.innerHeight ===
+        document.documentElement.offsetHeight
+
+      if (!this.stop && bottomOfWindow) {
+        this.searchMovie('load_more')
       }
     },
   },
