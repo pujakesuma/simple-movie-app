@@ -32,7 +32,6 @@ export const mutations = {
 export const actions = {
   async getDetail({ commit }, payload) {
     try {
-      console.log(payload)
       const response = await this.$axios.$get(this.$config.baseUrl, {
         params: {
           apikey: this.$config.apiKey,
