@@ -1,8 +1,5 @@
 <template>
-  <div class="container pt-5" style="min-height: 100vh; width: 100%">
-    <div class="text-primary" style="font-size: 2.5rem">
-      <span class="font-weight-bold text-light"> movie</span>wan
-    </div>
+  <div class="pt-3 pt-sm-5" style="min-height: 100vh; width: 100%">
     <search />
     <result />
   </div>
@@ -33,6 +30,10 @@ export default {
 </script>
 
 <style lang="scss">
+.logo {
+  font-size: 2.5rem;
+}
+
 .card {
   height: 375px;
   border: none;

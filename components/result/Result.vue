@@ -83,7 +83,6 @@ export default {
   mounted() {
     window.onscroll = () => this.scroll()
     document.body.ontouchmove = () => this.scroll()
-    // this.mobileScroll()
   },
   methods: {
     async fetchDetail(id) {
@@ -98,11 +97,13 @@ export default {
         type,
       })
     },
-
     scroll() {
+      const height = (
+        document.documentElement.scrollTop + window.innerHeight
+      ).toFixed(0)
+
       const bottomOfWindow =
-        document.documentElement.scrollTop + window.innerHeight ===
-        document.documentElement.offsetHeight
+        Number(height) === document.documentElement.offsetHeight
 
       if (!this.stop && bottomOfWindow) {
         this.searchMovie('load_more')

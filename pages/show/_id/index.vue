@@ -1,10 +1,5 @@
 <template>
-  <div class="container detail pt-5" style="height: 100vh">
-    <nuxt-link to="/" style="text-decoration: none">
-      <div class="text-primary" style="font-size: 2.5rem">
-        <span class="font-weight-bold text-light"> movie</span>wan
-      </div>
-    </nuxt-link>
+  <div class="detail pt-3 pt-sm-5" style="height: 100vh">
     <div class="row mt-4">
       <div class="col-12 col-sm-4 align-items-center mb-4 mb-sm-0">
         <div class="img-wrapper">
@@ -30,11 +25,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters({
-      detail: 'movies/GET_DETAIL',
-    }),
-  },
   async asyncData({ params, store, error }) {
     try {
       const response = await store.dispatch('movies/getDetail', {
@@ -47,6 +37,11 @@ export default {
         statusCode: err.response.status,
       })
     }
+  },
+  computed: {
+    ...mapGetters({
+      detail: 'movies/GET_DETAIL',
+    }),
   },
 }
 </script>
