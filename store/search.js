@@ -80,8 +80,8 @@ export const actions = {
           : commit('SET_SEARCH', Search)
       } else {
         type === 'load_more'
-          ? commit('SET_STOP', Error)
-          : commit('SET_ERROR', true)
+          ? commit('SET_STOP', true)
+          : commit('SET_ERROR', Error)
       }
       commit(`SET_LOADING${type === 'load_more' ? '_MORE' : ''}`, false)
     } catch (error) {

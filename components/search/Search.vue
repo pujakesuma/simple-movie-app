@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5">
+  <div class="mt-4">
     <form class="search-bar mb-3" @submit.prevent="searchMovie">
       <input
         v-model="keyword"
@@ -65,6 +65,7 @@ export default {
   color: #fff;
   padding: 1rem 5rem 1rem 1rem;
   width: 100%;
+  border-radius: 0.5rem;
 }
 
 @media screen and (max-width: 720px) {
