@@ -13,6 +13,11 @@ export default {
     Search,
     Result,
   },
+  data() {
+    return {
+      button: 'button',
+    }
+  },
   async asyncData({ store, error }) {
     try {
       const req = await store.dispatch('search/searchMovie', {
