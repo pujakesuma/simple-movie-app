@@ -118,6 +118,13 @@ export default {
   height: 375px;
   border: none;
   cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.result .card:hover,
+.result .card.active {
+  transform: scale(1.075);
+  border: 4px solid #1f93ff;
 }
 
 .card-img-top {
